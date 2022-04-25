@@ -1,0 +1,241 @@
+// Simple example application that shows how to read four Arduino
+// digital pins and map them to the USB Joystick library.
+//
+// The digital pins 9, 10, 11, and 12 are grounded when they are pressed.
+//
+// NOTE: This sketch file is for use with Arduino Leonardo and
+//       Arduino Micro only.
+//
+// by Matthew Heironimus
+// 2015-11-20
+//--------------------------------------------------------------------
+
+#include <Joystick.h>
+#define UP_PIN 15
+#define DOWN_PIN 16
+#define LEFT_PIN 14
+#define RIGHT_PIN 10
+#define X_KEY_PIN 8
+#define Y_KEY_PIN 6
+#define A_KEY_PIN 9
+#define B_KEY_PIN 7
+#define START_PIN A2
+#define SELECT_PIN A0
+#define L_KEY_PIN 2
+#define R_KEY_PIN 4
+#define L2_KEY_PIN 3
+#define R2_KEY_PIN 5
+#define L3_KEY_PIN A1
+#define R3_KEY_PIN A3
+
+
+
+// Create Joystick
+Joystick_ Joystick;
+
+void setup() {
+
+  pinMode(A0, OUTPUT);
+  digitalWrite(A0, HIGH);
+  pinMode(A1, OUTPUT);
+  digitalWrite(A1, HIGH);
+  pinMode(A2, OUTPUT);
+  digitalWrite(A2, HIGH);
+  pinMode(A3, OUTPUT);
+  digitalWrite(A3, HIGH);
+
+
+  // Initialize Button Pins
+  pinMode(0, INPUT_PULLUP);
+  pinMode(1, INPUT_PULLUP);
+  pinMode(2, INPUT_PULLUP);
+  pinMode(3, INPUT_PULLUP);
+  pinMode(4, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
+  pinMode(6, INPUT_PULLUP);
+  pinMode(7, INPUT_PULLUP);
+  pinMode(8, INPUT_PULLUP);
+  pinMode(9, INPUT_PULLUP);
+  pinMode(10, INPUT_PULLUP);
+  pinMode(14, INPUT_PULLUP);
+  pinMode(15, INPUT_PULLUP);
+  pinMode(16, INPUT_PULLUP);
+  pinMode(A0, INPUT_PULLUP);
+  pinMode(A1, INPUT_PULLUP);
+  pinMode(A2, INPUT_PULLUP);
+  pinMode(A3, INPUT_PULLUP);
+
+  // Initialize Joystick Library
+  Joystick.begin();
+}
+
+// Constant that maps the phyical pin to the joystick button.
+const int pinToButtonMap = 9;
+
+// Last state of the button
+int lastButtonState[18] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+void loop() {
+  //UP
+  if (digitalRead(UP_PIN) == HIGH)
+  {
+    Joystick.setButton(10, LOW);
+  }
+  else
+  {
+    Joystick.setButton(10, HIGH);
+  }
+
+  //DOWN
+  if (digitalRead(DOWN_PIN) ==  HIGH)
+  {
+    Joystick.setButton(14, LOW);
+  }
+  else
+  {
+    Joystick.setButton(14, HIGH);
+  }
+
+  //LEFT
+  if (digitalRead(LEFT_PIN) ==  HIGH)
+  {
+    Joystick.setButton(16, LOW);
+  }
+  else
+  {
+    Joystick.setButton(16, HIGH);
+  }
+
+  //RIGHT
+  if (digitalRead(RIGHT_PIN) ==  HIGH)
+  {
+    Joystick.setButton(15, LOW);
+  }
+  else
+  {
+    Joystick.setButton(15, HIGH);
+  }
+
+  // A_KEY
+  if (digitalRead(A_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(8, LOW);
+  }
+  else
+  {
+    Joystick.setButton(8, HIGH);
+  }
+
+  // B_KEY
+  if (digitalRead(B_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(6, LOW);
+  }
+  else
+  {
+    Joystick.setButton(6, HIGH);
+  }
+
+  // X_KEY
+  if (digitalRead(X_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(9, LOW);
+  }
+  else
+  {
+    Joystick.setButton(9, HIGH);
+  }
+
+  // Y_KEY
+  if (digitalRead(Y_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(7, LOW);
+  }
+  else
+  {
+    Joystick.setButton(7, HIGH);
+  }
+
+  // L_KEY_PIN
+  if (digitalRead(L_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(3, LOW);
+  }
+  else
+  {
+    Joystick.setButton(3, HIGH);
+  }
+
+  // R_KEY_PIN
+  if (digitalRead(R_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(5, LOW);
+  }
+  else
+  {
+    Joystick.setButton(5, HIGH);
+  }
+
+  // L2_KEY_PIN
+  if (digitalRead(L2_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(2, LOW);
+  }
+  else
+  {
+    Joystick.setButton(2, HIGH);
+  }
+
+  // R2_KEY_PIN
+  if (digitalRead(R2_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(4, LOW);
+  }
+  else
+  {
+    Joystick.setButton(4, HIGH);
+  }
+
+  // L3_KEY_PIN
+  if (digitalRead(L3_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(0, LOW);
+  }
+  else
+  {
+    Joystick.setButton(0, HIGH);
+  }
+
+  // R3_KEY_PIN
+  if (digitalRead(R3_KEY_PIN) == HIGH)
+  {
+    Joystick.setButton(1, LOW);
+  }
+  else
+  {
+    Joystick.setButton(1, HIGH);
+  }
+
+  // START
+  if (digitalRead(START_PIN) == HIGH)
+  {
+    Joystick.setButton(A3, LOW);
+  }
+  else
+  {
+    Joystick.setButton(A3, HIGH);
+  }
+
+  // SELECT
+  if (digitalRead(SELECT_PIN) == HIGH)
+  {
+    Joystick.setButton(A0, LOW);
+  }
+  else
+  {
+    Joystick.setButton(A0, HIGH);
+  }
+
+  delay(10);
+
+}
